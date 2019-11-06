@@ -20,7 +20,7 @@ const routes = [
   {
     component: () =>
       React.createElement(
-        require('/Users/GavinWu/Work/workspace/antd-course/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+        require('/Users/GavinWu/Work/antd-course/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: true },
       ),
