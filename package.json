@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-plugin-react": "^7.16.0",
     "umi": "^2.11.1",
     "umi-plugin-react": "^1.13.1"
   }
