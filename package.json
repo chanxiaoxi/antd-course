@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "umi dev",
     "build": "umi build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:js": "eslint --ext.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^6.6.0",
+    "eslint-config-umi": "^1.5.0",
     "eslint-plugin-react": "^7.16.0",
     "umi": "^2.11.1",
     "umi-plugin-react": "^1.13.1"

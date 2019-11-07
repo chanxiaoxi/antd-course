@@ -9,18 +9,32 @@ const Router = DefaultRouter;
 const routes = [
   {
     path: '/',
-    component: require('../Home').default,
-    exact: true,
-  },
-  {
-    path: '/hello-world',
-    component: require('../HelloWorld').default,
-    exact: true,
+    component: require('../../layout').default,
+    routes: [
+      {
+        path: '/',
+        component: require('../Index').default,
+        exact: true,
+      },
+      {
+        path: '/hello-world',
+        component: require('../HelloWorld').default,
+        exact: true,
+      },
+      {
+        component: () =>
+          React.createElement(
+            require('/Users/GavinWu/Work/workspace/antd-course/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+              .default,
+            { pagesPath: 'src/pages', hasRoutesInConfig: true },
+          ),
+      },
+    ],
   },
   {
     component: () =>
       React.createElement(
-        require('/Users/GavinWu/Work/antd-course/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+        require('/Users/GavinWu/Work/workspace/antd-course/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: true },
       ),
