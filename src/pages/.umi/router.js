@@ -3,8 +3,9 @@ import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@tmp/history';
+import { routerRedux } from 'dva';
 
-const Router = DefaultRouter;
+const Router = routerRedux.ConnectedRouter;
 
 const routes = [
   {
@@ -19,6 +20,39 @@ const routes = [
       {
         path: '/hello-world',
         component: require('../HelloWorld').default,
+        exact: true,
+      },
+      {
+        path: '/cms',
+        routes: [
+          {
+            path: '/cms/article',
+            component: require('../CMS/Article.js').default,
+            exact: true,
+          },
+          {
+            path: '/cms/category',
+            component: require('../CMS/Category.js').default,
+            exact: true,
+          },
+          {
+            path: '/cms/tag',
+            component: require('../CMS/Tag.js').default,
+            exact: true,
+          },
+          {
+            component: () =>
+              React.createElement(
+                require('/Users/GavinWu/Work/workspace/antd-course/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                  .default,
+                { pagesPath: 'src/pages', hasRoutesInConfig: true },
+              ),
+          },
+        ],
+      },
+      {
+        path: '/puzzlecards',
+        component: require('../PuzzleCards.js').default,
         exact: true,
       },
       {

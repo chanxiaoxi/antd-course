@@ -3,7 +3,8 @@ export default {
     [
       "umi-plugin-react",
       {
-        antd: true
+        antd: true,
+        dva: true,
       }
     ]
   ],
@@ -19,8 +20,26 @@ export default {
         {
           path: "/hello-world",
           component: "./HelloWorld"
+        },
+        {
+          path: "/cms",
+          routes: [
+            { path: "/cms/article", component: "CMS/Article.js" },
+            { path: "/cms/category", component: "CMS/Category.js" },
+            { path: "/cms/tag", component: "CMS/Tag.js" }
+          ]
+        },
+        {
+          path: "/puzzlecards",
+          component: "./PuzzleCards.js"
         }
       ]
     }
-  ]
+  ],
+  proxy: {
+    '/api': {
+      target: 'http://laravel-vue.test',
+      changeOrigin: true,
+    }
+  }
 };
