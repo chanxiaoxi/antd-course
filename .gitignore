@@ -1,4 +1,4 @@
 node_modules
 dist
-src/pages/.umi
+.umi
 mock
