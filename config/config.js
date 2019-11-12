@@ -32,6 +32,10 @@ export default {
         {
           path: "/puzzlecards",
           component: "./PuzzleCards.js"
+        },
+        {
+          path: 'list',
+          component: '../pages/list'
         }
       ]
     }
