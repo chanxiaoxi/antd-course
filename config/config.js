@@ -24,7 +24,7 @@ export default {
         {
           path: "/cms",
           routes: [
-            { path: "/cms/article", component: "CMS/Article.js" },
+            { path: "/cms/posts", component: "CMS/Post.js" },
             { path: "/cms/category", component: "CMS/Category.js" },
             { path: "/cms/tag", component: "CMS/Tag.js" }
           ]

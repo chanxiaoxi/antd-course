@@ -12,11 +12,12 @@ export default {
     }
   },
   reducers: {
-      saveList(state, {payload: {cardsList}}) {
-          return {
-              ...state,
-              cardsList
-          }
-      }
+    saveList(state, { payload: { cardsList } }) {
+      //把cardsList merge到state中
+      return {
+        ...state,
+        cardsList
+      };
+    }
   }
 };

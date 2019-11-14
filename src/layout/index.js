@@ -38,7 +38,7 @@ class BasicLayout extends Component {
               }
             >
               <Menu.Item key="2">
-                <Link to="/cms/article">文章</Link>
+                <Link to="/cms/posts">文章</Link>
               </Menu.Item>
               <Menu.Item key="3">
                 <Link to="/cms/category">栏目</Link>
