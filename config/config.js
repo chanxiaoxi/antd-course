@@ -42,7 +42,7 @@ export default {
   ],
   proxy: {
     '/api': {
-      target: 'http://laravel-vue.test',
+      target: 'http://l-platform.test',
       changeOrigin: true,
     }
   }

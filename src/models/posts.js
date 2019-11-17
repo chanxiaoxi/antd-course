@@ -1,3 +1,5 @@
+import * as postService from '../service/posts';
+
 export default {
   namespace: "posts",
   state: {
@@ -6,11 +8,11 @@ export default {
   effects: {
     *queryList({ _ }, { call, put }) {
       const res = yield call(postService.queryList);
-      yield put({ type: "queryList", paylaod: { postList: res.result } });
+      yield put({ type: "saveList", payload: { postList: res.data } });
     }
   },
   reducers: {
-    queryList(state, { payload: { postList } }) {
+    saveList(state, { payload: { postList } }) {
       return {
         ...state,
         postList
