@@ -17,5 +17,8 @@
     "eslint-plugin-react": "^7.16.0",
     "umi": "^2.11.1",
     "umi-plugin-react": "^1.13.1"
+  },
+  "dependencies": {
+    "braft-editor": "^2.3.8"
   }
 }

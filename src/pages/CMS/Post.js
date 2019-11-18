@@ -1,7 +1,20 @@
 import React from "react";
-import { Table, Avatar, Tag, Button, Tooltip } from "antd";
+import {
+  Table,
+  Avatar,
+  Tag,
+  Button,
+  Tooltip,
+  Modal,
+  Form,
+  FormItem,
+  Input,
+  Switch
+} from "antd";
 import { connect } from "dva";
 import moment from "moment";
+import BraftEditor from "braft-editor";
+import "braft-editor/dist/index.css";
 
 function mapStateToProps(state) {
   return {
@@ -11,6 +24,14 @@ function mapStateToProps(state) {
 }
 
 class Posts extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      createModalVisible: false,
+      editorValue: ""
+    };
+  }
+
   columns = [
     {
       title: "ID",
@@ -92,9 +113,79 @@ class Posts extends React.Component {
     });
   }
 
+  handleCreateOk = () => {
+    const {
+      form: { validateFields }
+    } = this.props;
+
+    validateFields((err, values) => {
+      if (!err) {
+        this.setState({ createModalVisible: false });
+      }
+    });
+  };
+
+  handleCreateCancel = () => this.setState({ createModalVisible: false });
+
+  showCreateModal = () => this.setState({ createModalVisible: true });
+
   render() {
+    const { getFieldDecorator } = this.props.form;
+
     return (
       <div>
+        <div style={{ textAlign: "left" }}>
+          <Button
+            type="primary"
+            icon="plus-circle"
+            style={{ marginBottom: "20px" }}
+            onClick={this.showCreateModal}
+          >
+            新建文章
+          </Button>
+          <Modal
+            title="新建文章"
+            visible={this.state.createModalVisible}
+            onOk={this.handleCreateOk}
+            onCancel={this.handleCreateCancel}
+            okText="确定"
+            cancelText="取消"
+            width={1000}
+          >
+            <Form layout="vertical">
+              <Form.Item label="名称">
+                {getFieldDecorator("name", {
+                  placeholder: "名称",
+                  rules: [{ required: true, message: "名称必须" }]
+                })(<Input />)}
+                {/* <Input name="name" placeholder="名称" size="large" /> */}
+              </Form.Item>
+              <Form.Item label="简介">
+                <Input.TextArea
+                  rows={4}
+                  placeholder="请在这里输入简介，不超过200字"
+                />
+              </Form.Item>
+              <Form.Item label="精选？">
+                <Switch
+                  checkedChildren="开"
+                  unCheckedChildren="关"
+                  defaultChecked
+                />
+              </Form.Item>
+              <Form.Item label="内容">
+                <div style={{ border: "1px solid #ccc" }}>
+                  <BraftEditor
+                    value={this.editorValue}
+                    onChange={this.handleEditChange}
+                    onSave={this.submitContent}
+                  />
+                </div>
+              </Form.Item>
+            </Form>
+          </Modal>
+        </div>
+
         <Table
           columns={this.columns}
           dataSource={this.props.postList}
@@ -106,4 +197,4 @@ class Posts extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps)(Form.create()(Posts));
